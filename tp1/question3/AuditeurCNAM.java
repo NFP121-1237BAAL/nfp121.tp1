@@ -7,6 +7,7 @@ package question3;
  * @author à compléter
  * @see java.lang.String, java.lang.Math
  */
+
 public class AuditeurCNAM {
     /** l'attribut nom de chaque auditeur. */
     private String nom;
@@ -45,8 +46,25 @@ public class AuditeurCNAM {
      *         homonymes...
      */
     public String login() {
-        return "";// à compléter
+        String no , pr ;
+        no = this.nom.substring(0,Math.min(this.nom.length(),6));
+        pr = this.prenom.substring(0,1);
+        no = no.toLowerCase();
+        pr = pr.toLowerCase();
+        no = nonAccents(no);
+        pr = nonAccents(pr);
+        no = no.replaceAll("[^a-z]","_");
+        pr = pr.replaceAll("[^a-z]","_");
+        return no+"_"+pr;
     }
+    public String nonAccents(String a){
+        String acc = "àäåáéêëèïîìíôöòóûùúü";
+        String noacc = "aaaaeeeeiiiioooouuuu";
+        for(int i=0;i<acc.length();i++){
+        a = a.replace (acc.charAt(i) , noacc.charAt(i));}
+        return a;
+    }
+
 
     /**
      * Lecture du nom de l'auditeur.
@@ -54,7 +72,7 @@ public class AuditeurCNAM {
      * @return son nom
      */
     public String nom() {
-        return null;// à compléter
+        return this.nom;
     }
 
     /**
@@ -63,7 +81,7 @@ public class AuditeurCNAM {
      * @return son prénom
      */
     public String prenom() {
-        return null;// à compléter
+        return this.prenom;
     }
 
     /**
@@ -72,7 +90,7 @@ public class AuditeurCNAM {
      * @return son matricule
      */
     public String matricule() {
-        return null;// à compléter
+        return this.matricule;
     }
 
     /**
